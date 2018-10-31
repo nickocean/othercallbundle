@@ -1,0 +1,4 @@
+assets:
+    css:
+        hangouts:
+            - 'bundles/oroothercall/css/scss/style.scss'
