@@ -23,7 +23,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultValue([[
                         'app_id' => '1088537665390',
                         'app_type' => 'LOCAL_APP',
-                        'app_name' => 'OroHangoutsApp',
+                        'app_name' => 'OroOtherApp',
                         'base_path' => 'bundles/oroothercall/hangouts-app'
                     ]])
                     ->prototype('array')
