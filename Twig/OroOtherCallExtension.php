@@ -4,7 +4,7 @@ namespace Oro\Bundle\OtherCallBundle\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class OroHangoutsCallExtension extends \Twig_Extension
+class OroOtherCallExtension extends \Twig_Extension
 {
     /** @var ContainerInterface */
     protected $container;
@@ -25,7 +25,7 @@ class OroHangoutsCallExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('get_hangoutscall_initail_apps', [$this, 'getInitialApps']),
+            new \Twig_SimpleFunction('get_othercall_initail_apps', [$this, 'getInitialApps']),
         ];
     }
 
@@ -34,7 +34,7 @@ class OroHangoutsCallExtension extends \Twig_Extension
      */
     public function getInitialApps()
     {
-        return $this->container->getParameter('oro_hangouts.initial_apps');
+        return $this->container->getParameter('oro_other.initial_apps');
     }
 
     /**
@@ -44,6 +44,6 @@ class OroHangoutsCallExtension extends \Twig_Extension
      */
     public function getName()
     {
-        return 'oro_hangoutscall_extension';
+        return 'oro_othercall_extension';
     }
 }

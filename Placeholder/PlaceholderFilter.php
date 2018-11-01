@@ -31,7 +31,7 @@ class PlaceholderFilter
     public function isEmailApplicable()
     {
         // hangouts call functionality is enabled in system configuration and it is desktop client
-        return (bool)$this->configManager->get('oro_hangouts_call.enable_google_hangouts_for_email') &&
+        return (bool)$this->configManager->get('oro_other_call.enable_google_other_for_email') &&
             $this->userAgentProvider->getUserAgent()->isDesktop();
     }
 
@@ -43,7 +43,7 @@ class PlaceholderFilter
     public function isPhoneApplicable()
     {
         // hangouts call functionality is enabled in system configuration and it is desktop client
-        return (bool)$this->configManager->get('oro_hangouts_call.enable_google_hangouts_for_phone') &&
+        return (bool)$this->configManager->get('oro_other_call.enable_google_other_for_phone') &&
             $this->userAgentProvider->getUserAgent()->isDesktop();
     }
 }

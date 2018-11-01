@@ -1,7 +1,7 @@
 define(function(require) {
     'use strict';
 
-    var LogCallStartHangoutComponent;
+    var LogCallStartOtherComponent;
     var _ = require('underscore');
     var SubjectFieldView = require('../views/log-call/subject-field-view');
     var NotesFieldView = require('../views/log-call/notes-field-view');
@@ -9,28 +9,28 @@ define(function(require) {
     var DurationFieldView = require('../views/log-call/duration-field-view');
     var CallDatetimeFieldView = require('../views/log-call/call-datetime-field-view');
     var StartButtonView = require('../views/start-button-view');
-    var HangoutsEventBroker = require('orohangoutscall/js/hangouts-event-broker');
-    var appPageTemplate = require('tpl!orohangoutscall/templates/hangouts-app-log-call-form.html');
+    var OtherEventBroker = require('orootherscall/js/other-event-broker');
+    var appPageTemplate = require('tpl!oroothercall/templates/other-app-log-call-form.html');
     var BaseComponent = require('oroui/js/app/components/base/component');
 
-    LogCallStartHangoutComponent = BaseComponent.extend({
-        /** @type {HangoutsEventBroker} */
+    LogCallStartOtherComponent = BaseComponent.extend({
+        /** @type {OtherEventBroker} */
         eventBroker: null,
 
         /**
          * @inheritDoc
          */
-        constructor: function LogCallStartHangoutComponent() {
-            LogCallStartHangoutComponent.__super__.constructor.apply(this, arguments);
+        constructor: function LogCallStartOtherComponent() {
+            LogCallStartOtherComponent.__super__.constructor.apply(this, arguments);
         },
 
         /**
          * @inheritDoc
          */
         initialize: function(options) {
-            LogCallStartHangoutComponent.__super__.initialize.call(this, options);
-            this.hangoutOptions = _.clone(options.hangoutOptions || {});
-            this.setEventBroker(new HangoutsEventBroker());
+            LogCallStartOtherComponent.__super__.initialize.call(this, options);
+            this.otherOptions = _.clone(options.otherOptions || {});
+            this.setEventBroker(new OtherEventBroker());
             this.initViews(options);
         },
 
@@ -39,7 +39,7 @@ define(function(require) {
          * - first disposes old eventBroker if exists
          * - then bind event handlers
          *
-         * @param {HangoutsEventBroker} eventBroker
+         * @param {OtherEventBroker} eventBroker
          */
         setEventBroker: function(eventBroker) {
             if (this.eventBroker) {
@@ -61,7 +61,7 @@ define(function(require) {
          * Sets external eventBroker
          * (in case a hangout is already started and a log-call dialog was opened as consequence of some action)
          *
-         * @param {HangoutsEventBroker} eventBroker
+         * @param {OtherEventBroker} eventBroker
          */
         setExternalEventBroker: function(eventBroker) {
             this.setEventBroker(eventBroker);
@@ -80,7 +80,7 @@ define(function(require) {
             this.startButtonView = new StartButtonView({
                 autoRender: true,
                 el: options._sourceElement,
-                hangoutOptions: options.hangoutOptions || {},
+                otherOptions: options.otherOptions || {},
                 token: this.eventBroker.getToken()
             });
 
@@ -135,14 +135,14 @@ define(function(require) {
          */
         updateStartButton: function(phone) {
             if (phone) {
-                this.hangoutOptions.invites = [{
+                this.otherOptions.invites = [{
                     id: phone,
                     invite_type: phone.match(/^.+@.+\..+$/) ? 'EMAIL' : 'PHONE'
                 }];
             } else {
-                delete this.hangoutOptions.invites;
+                delete this.otherOptions.invites;
             }
-            this.startButtonView.setHangoutOptions(this.hangoutOptions);
+            this.startButtonView.setOtherOptions(this.otherOptions);
             this.startButtonView.render();
         },
 
@@ -214,5 +214,5 @@ define(function(require) {
         }
     });
 
-    return LogCallStartHangoutComponent;
+    return LogCallStartOtherComponent;
 });

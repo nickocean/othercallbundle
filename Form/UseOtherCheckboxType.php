@@ -6,9 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UseHangoutCheckboxType extends AbstractType
+class UseOtherCheckboxType extends AbstractType
 {
-    const NAME = 'oro_hangouts_call_use_hangout_checkbox_type';
+    const NAME = 'oro_other_call_use_other_checkbox_type';
 
     /**
      * {@inheritdoc}
@@ -39,6 +39,6 @@ class UseHangoutCheckboxType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(['tooltip' => 'oro.calendar.calendarevent.use_hangout.tooltip']);
+        $resolver->setDefaults(['tooltip' => 'oro.calendar.calendarevent.use_other.tooltip']);
     }
 }

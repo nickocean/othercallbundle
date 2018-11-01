@@ -10,10 +10,10 @@ define(function(require) {
     var moduleConfig = require('module').config();
 
     StartButtonView = BaseView.extend({
-        className: 'start-hangout-button-placeholder',
+        className: 'start-other-button-placeholder',
 
         /** @type {Object} */
-        hangoutOptions: null,
+        otherOptions: null,
 
         /** @type {string|null} */
         token: null,
@@ -50,7 +50,7 @@ define(function(require) {
          * @param {string=} options.token - unique hash
          */
         initialize: function(options) {
-            this.setHangoutOptions(_.result(options, 'hangoutOptions'));
+            this.setOtherOptions(_.result(options, 'otherOptions'));
             _.extend(this, _.pick(options, ['token']));
             StartButtonView.__super__.initialize.call(this, options);
         },
@@ -99,15 +99,15 @@ define(function(require) {
          *
          * @param {Object} options
          */
-        setHangoutOptions: function(options) {
-            this.hangoutOptions = options || {};
+        setOtherOptions: function(options) {
+            this.otherOptions = options || {};
         },
 
         /**
          * Combines options for start hangout button
          */
-        combineHangoutOptions: function() {
-            var options = _.extend({render: 'createhangout'}, this.hangoutOptions);
+        combineOtherOptions: function() {
+            var options = _.extend({render: 'createother'}, this.otherOptions);
             var apps = moduleConfig.initialApps;
 
             if (!_.isEmpty(apps) && this.token) {
@@ -171,7 +171,7 @@ define(function(require) {
                 return;
             }
 
-            if (!gapi || !gapi.hangout) {
+            if (!gapi || !gapi.other) {
                 this.deferredRender.reject(new Error('Cannot load Google API lib'));
                 delete this.deferredRender;
                 return;
@@ -181,7 +181,7 @@ define(function(require) {
             this.$iframeContainer = $container = $('<div style="display: none"/>');
             $('body').append($container);
 
-            gapi.hangout.render($container[0], this.combineHangoutOptions());
+            gapi.other.render($container[0], this.combineOtherOptions());
             $container.find('iframe').one('load' + this.eventNamespace(), _.bind(function(e) {
                 this.$el.html(e.target);
                 $container.remove();

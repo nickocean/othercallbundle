@@ -3,11 +3,11 @@
 namespace Oro\Bundle\OtherCallBundle\Migrations\Schema;
 
 use Doctrine\DBAL\Schema\Schema;
-use Oro\Bundle\OtherCallBundle\Migrations\Schema\v1_0\AddUseHangoutColumn;
+use Oro\Bundle\OtherCallBundle\Migrations\Schema\v1_0\AddUseOtherColumn;
 use Oro\Bundle\MigrationBundle\Migration\Installation;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
-class OroHangoutsCallBundleInstaller implements Installation
+class OroOtherCallBundleInstaller implements Installation
 {
     /**
      * {@inheritdoc}
@@ -22,6 +22,6 @@ class OroHangoutsCallBundleInstaller implements Installation
      */
     public function up(Schema $schema, QueryBag $queries)
     {
-        AddUseHangoutColumn::useHangoutColumn($schema);
+        AddUseOtherColumn::useOtherColumn($schema);
     }
 }

@@ -3,13 +3,13 @@
 {% set options = {
     class: cssClass is defined ? cssClass : '',
     aCss: 'no-hash',
-    iCss: 'icon-hangouts',
-    label: 'oro.hangoutscall.call.hangouts_call'|trans,
+    iCss: 'icon-other',
+    label: 'oro.othercall.call.other_call'|trans,
     pageComponent: {
-        module: 'orohangoutscall/js/app/components/invite-hangout-component',
+        module: 'oroothercall/js/app/components/invite-other-component',
         options: {
             modalOptions: {
-                hangoutOptions: hangoutOptions is defined ? hangoutOptions : {}
+                otherOptions: otherOptions is defined ? otherOptions : {}
             }
         }|merge(extraComponentOptions is defined ? extraComponentOptions : {})
     }

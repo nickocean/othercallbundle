@@ -1,31 +1,31 @@
 define(function(require) {
     'use strict';
 
-    var InviteHangoutComponent;
+    var InviteOtherComponent;
     var _ = require('underscore');
     var mediator = require('oroui/js/mediator');
     var __ = require('orotranslation/js/translator');
     var InviteButtonView = require('../views/invite-button-view');
     var InviteModalView = require('../views/invite-modal-view');
-    var HangoutsEventBroker = require('orohangoutscall/js/hangouts-event-broker');
+    var OtherEventBroker = require('oroothercall/js/other-event-broker');
     var WidgetComponent = require('oroui/js/app/components/widget-component');
     var BaseComponent = require('oroui/js/app/components/base/component');
 
-    InviteHangoutComponent = BaseComponent.extend({
+    InviteOtherComponent = BaseComponent.extend({
         /** @type {Object} */
         modalOptions: null,
 
         /** @type {Object} */
         onAppStartOptions: null,
 
-        /** @type {HangoutsEventBroker} */
+        /** @type {OtherEventBroker} */
         eventBroker: null,
 
         /**
          * @inheritDoc
          */
-        constructor: function InviteHangoutComponent() {
-            InviteHangoutComponent.__super__.constructor.apply(this, arguments);
+        constructor: function InviteOtherComponent() {
+            InviteOtherComponent.__super__.constructor.apply(this, arguments);
         },
 
         /**
@@ -61,7 +61,7 @@ define(function(require) {
             this.listenTo(this.inviteModal, {
                 'hidden': this.onInviteModalHide,
                 'fail': this.onStartButtonFail,
-                'application-start': this.onHangoutAppStart
+                'application-start': this.onOtherAppStart
             });
 
             this.inviteModal.open();
@@ -75,8 +75,8 @@ define(function(require) {
             if (this.eventBroker) {
                 this.unsetEventBroker();
             }
-            this.eventBroker = new HangoutsEventBroker();
-            this.listenTo(this.eventBroker, 'application-start', this.onHangoutAppStart);
+            this.eventBroker = new OtherEventBroker();
+            this.listenTo(this.eventBroker, 'application-start', this.onOtherAppStart);
         },
 
         /**
@@ -104,22 +104,22 @@ define(function(require) {
         },
 
         /**
-         * Handles StartHangoutButton initialization fail
+         * Handles StartOtherButton initialization fail
          */
         onStartButtonFail: function() {
             if (this.inviteModal) {
                 this.inviteModal.close();
             }
-            mediator.execute('showErrorMessage', __('oro.hangoutscall.messages.connection_error'));
+            mediator.execute('showErrorMessage', __('oro.othercall.messages.connection_error'));
         },
 
         /**
          * Handles application start
-         *  - closes InviteHangoutModal dialog
+         *  - closes InviteOtherModal dialog
          *  - opens onAppStart widget if there's defined one
          *  - unbind eventBroker instance and passes it to other component or dispose
          */
-        onHangoutAppStart: function() {
+        onOtherAppStart: function() {
             // close inviteModal dialog
             if (this.inviteModal) {
                 this.inviteModal.close();
@@ -148,7 +148,7 @@ define(function(require) {
          *
          * @param {Object} widgetComponentOptions - options for a widget component
          * @param {string} targetComponentName - name of component inside the widget that accepts eventBroker
-         * @param {HangoutsEventBroker} eventBroker
+         * @param {OtherEventBroker} eventBroker
          */
         passEventBrokerToComponentOfWidget: function(widgetComponentOptions, targetComponentName, eventBroker) {
             var widgetComponent = new WidgetComponent(widgetComponentOptions);
@@ -169,5 +169,5 @@ define(function(require) {
         }
     });
 
-    return InviteHangoutComponent;
+    return InviteOtherComponent;
 });

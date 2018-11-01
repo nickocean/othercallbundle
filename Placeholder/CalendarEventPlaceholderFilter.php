@@ -50,6 +50,6 @@ class CalendarEventPlaceholderFilter
             // calendar event has child events
             !$entity->getChildEvents()->isEmpty() &&
             // hangout option should be allowed for this event
-            $entity->getUseHangout() !== false;
+            $entity->getUseOther() !== false;
     }
 }

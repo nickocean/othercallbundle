@@ -1,6 +1,6 @@
-.icon-hangouts:before {
+.icon-other:before {
   content: '';
-  background: url("../../img/hangouts-icon.png") no-repeat center;
+  background: url("../../img/other-icon.png") no-repeat center;
   background-size: 14px 14px;
   width: 14px;
   height: 22px;
@@ -11,10 +11,10 @@
   }
 }
 
-.invite-hangout-modal {
-  .invite-hangout-modal-participants {
+.invite-other-modal {
+  .invite-other-modal-participants {
     margin: 10px 0 10px 25px;
-    .invite-hangout-modal-participant-name {
+    .invite-other-modal-participant-name {
       font-weight: bold;
       padding-right: 25px;
       &:empty {
@@ -22,7 +22,7 @@
       }
     }
   }
-  .invite-hangout-modal-note {
+  .invite-other-modal-note {
     font-size: 11px;
     color: #777;
     margin-bottom: 0;
@@ -37,7 +37,7 @@
   }
 }
 
-.start-hangout-button-placeholder {
+.start-other-button-placeholder {
   display: inline-block;
   vertical-align: bottom;
   height: 30px;

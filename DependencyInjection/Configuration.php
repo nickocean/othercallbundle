@@ -17,14 +17,14 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('oro_hangouts_call')
+        $rootNode    = $treeBuilder->root('oro_other_call')
             ->children()
                 ->arrayNode('initial_apps')
                     ->defaultValue([[
                         'app_id' => '1088537665390',
                         'app_type' => 'LOCAL_APP',
                         'app_name' => 'OroOtherApp',
-                        'base_path' => 'bundles/oroothercall/hangouts-app'
+                        'base_path' => 'bundles/oroothercall/other-app'
                     ]])
                     ->prototype('array')
                         ->children()
@@ -46,11 +46,11 @@ class Configuration implements ConfigurationInterface
             ->end();
 
         SettingsBuilder::append($rootNode, [
-            'enable_google_hangouts_for_email' => [
+            'enable_google_other_for_email' => [
                 'value' => true,
                 'type' => 'boolean',
             ],
-            'enable_google_hangouts_for_phone' => [
+            'enable_google_other_for_phone' => [
                 'value' => true,
                 'type' => 'boolean',
             ]

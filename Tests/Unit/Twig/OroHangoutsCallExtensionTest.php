@@ -2,14 +2,14 @@
 
 namespace Oro\Bundle\OtherCallBundle\Tests\Unit\Twig;
 
-use Oro\Bundle\OtherCallBundle\Twig\OroHangoutsCallExtension;
+use Oro\Bundle\OtherCallBundle\Twig\OroOtherCallExtension;
 use Oro\Component\Testing\Unit\TwigExtensionTestCaseTrait;
 
 class OroHangoutsCallExtensionTest extends \PHPUnit_Framework_TestCase
 {
     use TwigExtensionTestCaseTrait;
 
-    /** @var OroHangoutsCallExtension */
+    /** @var OroOtherCallExtension */
     protected $extension;
 
     /** @var array */
@@ -21,7 +21,7 @@ class OroHangoutsCallExtensionTest extends \PHPUnit_Framework_TestCase
             ->addParameter('oro_hangouts.initial_apps', $this->initialAppsParameter)
             ->getContainer($this);
 
-        $this->extension = new OroHangoutsCallExtension($container);
+        $this->extension = new OroOtherCallExtension($container);
     }
 
     public function testGetInitialApps()

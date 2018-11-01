@@ -1,12 +1,12 @@
 define(function(require) {
     'use strict';
 
-    var CalendarEventStartHangoutComponent;
+    var CalendarEventStartOtherComponent;
     var _ = require('underscore');
     var StartButtonView = require('../views/start-button-view');
     var BaseComponent = require('oroui/js/app/components/base/component');
 
-    CalendarEventStartHangoutComponent = BaseComponent.extend({
+    CalendarEventStartOtherComponent = BaseComponent.extend({
         /**
          * @type {Object}
          */
@@ -15,7 +15,7 @@ define(function(require) {
         /**
          * @type {Object}
          */
-        hangoutOptions: null,
+        otherOptions: null,
 
         /**
          * @type {Integer}
@@ -30,8 +30,8 @@ define(function(require) {
         /**
          * @inheritDoc
          */
-        constructor: function CalendarEventStartHangoutComponent() {
-            CalendarEventStartHangoutComponent.__super__.constructor.apply(this, arguments);
+        constructor: function CalendarEventStartOtherComponent() {
+            CalendarEventStartOtherComponent.__super__.constructor.apply(this, arguments);
         },
 
         /**
@@ -41,9 +41,9 @@ define(function(require) {
             _.extend(
                 this,
                 _.defaults(
-                    _.pick(options, ['calendarEvent', 'hangoutOptions', 'ownerUserId', 'declinedStatus']),
+                    _.pick(options, ['calendarEvent', 'otherOptions', 'ownerUserId', 'declinedStatus']),
                     {
-                        hangoutOptions: {}
+                        otherOptions: {}
                     }
                 )
             );
@@ -53,7 +53,7 @@ define(function(require) {
 
             this.startButtonView = new StartButtonView({
                 el: options._sourceElement,
-                hangoutOptions: this.hangoutOptions
+                otherOptions: this.otherOptions
             });
 
             var attendees = this.getAttendeesApplicableToInvite();
@@ -86,7 +86,7 @@ define(function(require) {
                 };
             });
 
-            this.startButtonView.setHangoutOptions(_.extend({}, this.hangoutOptions, {
+            this.startButtonView.setOtherOptions(_.extend({}, this.otherOptions, {
                 invites: invites
             }));
             this.startButtonView.render();
@@ -97,5 +97,5 @@ define(function(require) {
         }
     });
 
-    return CalendarEventStartHangoutComponent;
+    return CalendarEventStartOtherComponent;
 });

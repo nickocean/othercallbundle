@@ -5,7 +5,7 @@ namespace Oro\Bundle\OtherCallBundle\Migrations\Schema\v1_1;
 use Doctrine\DBAL\Schema\Schema;
 use Oro\Bundle\CalendarBundle\Entity\CalendarEvent;
 use Oro\Bundle\EntityConfigBundle\Migration\UpdateEntityConfigFieldValueQuery;
-use Oro\Bundle\OtherCallBundle\Form\UseHangoutCheckboxType;
+use Oro\Bundle\OtherCallBundle\Form\UseOtherCheckboxType;
 use Oro\Bundle\MigrationBundle\Migration\Migration;
 use Oro\Bundle\MigrationBundle\Migration\QueryBag;
 
@@ -19,11 +19,11 @@ class ReplaceFormAliases implements Migration
         $queries->addQuery(
             new UpdateEntityConfigFieldValueQuery(
                 CalendarEvent::class,
-                'use_hangout',
+                'use_other',
                 'form',
                 'form_type',
-                UseHangoutCheckboxType::class,
-                'oro_hangouts_call_use_hangout_checkbox_type'
+                UseOtherCheckboxType::class,
+                'oro_other_call_use_other_checkbox_type'
             )
         );
     }

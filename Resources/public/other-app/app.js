@@ -2,7 +2,7 @@
 (function() {
     'use strict';
 
-    var startData = JSON.parse(atob(gapi.hangout.getStartData()));
+    var startData = JSON.parse(atob(gapi.other.getStartData()));
     var origin = window.location.protocol + '//' + startData.host;
     var baseURL = origin + '/' + startData.basePath + '/';
     var iframeSrc = baseURL + 'iframe.html';
@@ -94,13 +94,13 @@
             /** @type {number|null} */
             _interval: null,
 
-            /** @type {gapi.hangout.telephone.Call|null} */
+            /** @type {gapi.other.telephone.Call|null} */
             _call: null,
 
             /**
              * Starts tracking given call on state change
              *
-             * @param {gapi.hangout.telephone.Call} call
+             * @param {gapi.other.telephone.Call} call
              */
             track: function(call) {
                 if (this._call) {
@@ -186,13 +186,13 @@
         phoneCallHandler._onStateChange = phoneCallHandler._onStateChange.bind(phoneCallHandler);
 
         // a call is already started
-        var calls = gapi.hangout.telephone.getCalls();
+        var calls = gapi.other.telephone.getCalls();
         if (calls[0]) {
             phoneCallHandler.track(calls[0]);
         }
 
         // listening initiating a call
-        gapi.hangout.telephone.onCallInitiated.add(function(e) {
+        gapi.other.telephone.onCallInitiated.add(function(e) {
             phoneCallHandler.track(e.callInformation);
         });
     })();
@@ -250,9 +250,9 @@
             }
         };
 
-        gapi.hangout.onEnabledParticipantsChanged.add(function() {
+        gapi.other.onEnabledParticipantsChanged.add(function() {
             // participants without OroHangoutApp and person id not is empty (not phone call)
-            var participants = gapi.hangout.getParticipants().filter(function(participant) {
+            var participants = gapi.other.getParticipants().filter(function(participant) {
                 return participant.hasAppEnabled === false && participant.person.id !== '';
             });
 

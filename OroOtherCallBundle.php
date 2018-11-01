@@ -4,6 +4,6 @@ namespace Oro\Bundle\OtherCallBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class OroHangoutsCallBundle extends Bundle
+class OroOtherCallBundle extends Bundle
 {
 }

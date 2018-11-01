@@ -1,2 +1,2 @@
 bundles:
-    - { name: Oro\Bundle\OtherCallBundle\OroHangoutsCallBundle, priority: 3 }
+    - { name: Oro\Bundle\OtherCallBundle\OroOtherCallBundle, priority: 3 }

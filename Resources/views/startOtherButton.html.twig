@@ -1,0 +1,7 @@
+{% import 'OroOtherCallBundle::macros.html.twig' as OtherCall %}
+
+{{ OtherCall.renderStartButton({
+    otherOptions: {
+        invites: invites is defined ? invites : []
+    }
+}) }}

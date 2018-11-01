@@ -15,9 +15,9 @@
     {% set pageComponent = {
         module: parameters.componentModule is defined ? parameters.componentModule : 'oroui/js/app/components/view-component',
         options: {
-            view: 'orohangoutscall/js/app/views/start-button-view',
+            view: 'oroothercall/js/app/views/start-button-view',
             autoRender: true,
-            hangoutOptions: parameters.hangoutOptions is defined ? parameters.hangoutOptions : {}
+            otherOptions: parameters.otherOptions is defined ? parameters.otherOptions : {}
         }
     } %}
     {% if parameters.componentName is defined %}
@@ -25,7 +25,7 @@
             name: parameters.componentName
         }) %}
     {% endif %}
-    <div class="start-hangout-button-placeholder{% if parameters.class is defined %} {{ parameters.class }}{% endif %}"
+    <div class="start-other-button-placeholder{% if parameters.class is defined %} {{ parameters.class }}{% endif %}"
             {% if parameters.dataAttributes is defined and parameters.dataAttributes|length %}
                 {{ UI.renderAttributes(parameters.dataAttributes) }}
             {% endif %}

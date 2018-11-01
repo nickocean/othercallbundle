@@ -1,12 +1,12 @@
 define(function(require) {
     'use strict';
 
-    var HangoutsEventBroker;
+    var OtherEventBroker;
     var _ = require('underscore');
     var tools = require('oroui/js/tools');
     var BaseClass = require('oroui/js/base-class');
 
-    HangoutsEventBroker = BaseClass.extend({
+    OtherEventBroker = BaseClass.extend({
         /** @type {number|null} */
         interval: null,
 
@@ -19,8 +19,8 @@ define(function(require) {
         /**
          * @inheritDoc
          */
-        constructor: function HangoutsEventBroker() {
-            HangoutsEventBroker.__super__.constructor.apply(this, arguments);
+        constructor: function OtherEventBroker() {
+            OtherEventBroker.__super__.constructor.apply(this, arguments);
         },
 
         /**
@@ -32,7 +32,7 @@ define(function(require) {
             this.token = options.token || tools.createRandomUUID();
             this.history = [];
             setInterval(_.bind(this._checkStorage, this), 50);
-            HangoutsEventBroker.__super__.initialize.call(this, options);
+            OtherEventBroker.__super__.initialize.call(this, options);
         },
 
         /**
@@ -43,7 +43,7 @@ define(function(require) {
                 return;
             }
             clearInterval(this.interval);
-            HangoutsEventBroker.__super__.dispose.call(this);
+            OtherEventBroker.__super__.dispose.call(this);
         },
 
         /**
@@ -114,5 +114,5 @@ define(function(require) {
         }
     });
 
-    return HangoutsEventBroker;
+    return OtherEventBroker;
 });
